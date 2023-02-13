@@ -1,8 +1,9 @@
-const express = require('express')
-const app = express()
-const bodyParser = require('body-parser')
-const session = require('express-session')
-const port = 3000
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const { MongoClient } = require('mongodb');
+const port = 3000;
 
 const sess = {
   secret: 'this should be secret and random',
