@@ -34,7 +34,10 @@ app.use(session(sess));
 // Server's base route
 app.get('/', (req, res) => {
   // Displays our login.html file at the root route
-  res.sendFile(__dirname + '/login.html');
+  if(req.session.loggedIn) 
+    res.sendFile(__dirname + '/home.html');
+  else
+    res.sendFile(__dirname + '/login.html');
 });
 
 // Exc. 3.1: Handle POST request to /login route
@@ -45,8 +48,10 @@ app.post('/login', async (req, res) => {
   const result = await db.collection('users').findOne(query);
   if (result != null) {
     req.session.user = user;
-    res.sendFile(__dirname + '/home.html');
+    req.session.loggedIn = true;
+    res.redirect('/');
   } else {
+    req.session.loggedIn = false;
     console.log('No such user!');
     res.sendStatus(404);
   }
