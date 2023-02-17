@@ -68,3 +68,12 @@ To fix this, we will have to start writing our backend :0 You can stop the serve
 
 ## 3. Writing the Backend
 ### Exercise 3.1
+The first step is to write handle the login requests. Note that in `login.html`, pressing the login button sends a GET request to `localhost:3000/login`. The POST requests at this URL are handled by our server through the function in `app.post('/login', func);`. Open `index.js` and fill in this function's body, to make it do roughly the following.
+1. Get the POST request's information
+2. Check if this matches with a user in the users collection of our database
+3. If it does, then route the client to `home.html`
+4. Otherwise, send a 404 status
+
+To test this, run the server using `node index.js` and go to `http://localhost:3000/` in your browser. This will open the login page. Enter in user information that exists in your database (i.e. the data you entered with `mongosh` in Step 1). Then it should render the home page.
+
+### Exercise 3.2
