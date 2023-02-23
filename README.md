@@ -67,11 +67,13 @@ To fix this, we will have to start writing our backend :0 You can stop the serve
 
 ## 3. Writing the Backend
 ### Exercise 3.1
-The first step is to write handle the login requests. Note that in `login.html`, pressing the login button sends a GET request to `localhost:3000/login`. The POST requests at this URL are handled by our server through the function in `app.post('/login', func);`. Open `index.js` and fill in this function's body, to make it do roughly the following.
+The first step is to write handle the login requests. Note that in `login.html`, pressing the login button sends a POST request to `localhost:3000/login`. The POST requests at this URL are handled by our server through the function in `app.post('/login', func);`. Open `index.js` and fill in this function's body, to make it do roughly the following.
 1. Get the POST request's information
 2. Check if this matches with a user in the users collection of our database
 3. If it does, then route the client to `home.html`
 4. Otherwise, send a 404 status
+
+*Hint:* In order to do step 3, you may want to store the fact that a user is logged in. You can do this using the [express-session package](https://expressjs.com/en/resources/middleware/session.html) which I have already installed and set up for you. This package lets you store data during a session.
 
 To test this, run the server using `node index.js` and go to `http://localhost:3000/` in your browser. This will open the login page. Enter in user information that exists in your database (i.e. the data you entered with `mongosh` in Step 1). Then it should render the home page.
 
@@ -84,4 +86,4 @@ Now that authentication is working, we can make our home page! All our home page
 *Hint:* `fetch` returns a Promise so make sure you conume it correctly! 
 
 ## Celebrate
-Congrats! Now you have established a basic working backend! We will expand on this later once we've learned React to build a more complex website
+Congrats! Now you have established a basic working backend! Note that you will (hopefully) never make an authentication server again as there are much more escure pre-built solutions out there such as Firebase. However, this is a good starting point for us and we will expand on this backend later once we've learned React as we will then be able to build a more complex website.
