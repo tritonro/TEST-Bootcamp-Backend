@@ -77,3 +77,9 @@ The first step is to write handle the login requests. Note that in `login.html`,
 To test this, run the server using `node index.js` and go to `http://localhost:3000/` in your browser. This will open the login page. Enter in user information that exists in your database (i.e. the data you entered with `mongosh` in Step 1). Then it should render the home page.
 
 ### Exercise 3.2
+Now that authentication is working, we need to make our feed! To do this, we will need to make sure we can get data from our backend and display it on the frontend. Our first step, is to make a welcome message. We want to be able to welcome the specific user that just logged in. To do this, we will make use of `message.js`.
+1. Modify the `/user` route in the backend (`index.js`) to send the logged in user's name
+2. Inside `message.js`, use the `fetch` function to get the username from the `/user` route
+3. Use this username to update the textContent of the welcome message
+
+*Hint:* `fetch` returns a Promise so make sure you handle that correctly! 
