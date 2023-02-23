@@ -1,10 +1,10 @@
 # TEST Bootcamp Backend Activity
 
 ## Introduction
-In this activity, you will be making the backend for a forum website. This website will consist of a login page, a home page, and a new post page. All of these pages will be given to you. In order for the website to work however, you will need to create the login workflow, render the feed, and allow users to create new posts.
+In this activity, you will be making the backend for a website. This website will consist of a login page and a home page. Both of these pages will be given to you. In order for the website to work however, you will need to create the login workflow and render the home page.
 
 This will involve 
-1. Creating a database in MongoDB to store user account info and all of the posts
+1. Creating a database in MongoDB to store user account info
 2. Creating and connecting an Express.js server to the database through a MongoDB driver
 3. Writing the backend logic for the Express.js server to route web pages and retrieve and post data to the database
 
@@ -33,16 +33,15 @@ Before we move on to the Express.js server, we will mess around with `mongosh` a
 
 Type `show dbs` to see a list of all the databases on the server. Although we haven't made one yet, there should be a few default databases. We can switch to any of these databases with the `use` command (i.e. `use admin`). Note: you can also switch to a database that you haven't created yet as MongoDB will just create it for you automatically! This is how we will create the database for our website :). Type `use testDevs` to switch to your new database (you can substitute `testDevs` with any name you want, just make sure you use your name whenever I use `testDevs` in the rest of this guide).
 
-Now we want to make 2 collections/tables, one for our users and one for our posts. Much like with databases, you don't have to explicitly create the collections. Instead, you can just pretend they already exist and try to insert data into them. Once you've inserted a document, MongoDB will automatically create a collection for you. The syntax for inserting a single document is `db.collectionName.insertOne(document)` where `collectionName` is replaced with whatever you want to name your collection (i.e. `users`) and `document` is a JavaScript object containing your desired data (i.e `{username: 'rohan', password: '123abc'}`).
+Now we want to make a collection/table for our users. Much like with databases, you don't have to explicitly create the collections. Instead, you can just pretend they already exist and try to insert data into them. Once you've inserted a document, MongoDB will automatically create a collection for you. The syntax for inserting a single document is `db.collectionName.insertOne(document)` where `collectionName` is replaced with whatever you want to name your collection (i.e. `users`) and `document` is a JavaScript object containing your desired data (i.e `{username: 'rohan', password: '123abc'}`).
 
 Once you are done playing around with `mongosh`, you can exit the program by either typing `quit` or by pressing ctrl + d.
 ### Exercise 1.1
 1. Create a `users` collection by inserting in a document correspsonding to a user. Carefully consider what information a user account will need in order for our website to work properly.
-2. Create a `posts` collection by inserting in a document corresponding to a sample post. Carefully consider what information we need to store for every post.
 
-*Hint:* Looking at the different `.html` files may give some information about what attributes the website is expecting, but you are also more than welcome to change the HTML/CSS to accomodate your idea of what users/posts should look like!
+*Hint:* Looking at the different `.html` files may give some information about what attributes the website is expecting, but you are also more than welcome to change the HTML/CSS to accomodate your idea of what users should look like!
 
-Note: MongoDB will automatically generate a unique id for each document (denoted by the `_id` key) so you don't need to worry about user or post ids.
+Note: MongoDB will automatically generate a unique id for each document (denoted by the `_id` key) so you don't need to worry about user ids.
 
 ## 2. Express.js Server
 Node.js is a JavaScript runtime environment. This means that it is software that lets you run JavaScript code on your computer. This is useful because it allows us to write a server in JavaScript and run it on our computer. Express.js is a server framework that sits on top of Node.js and makes it easier to write a server. As a result, we will use it when writing our server :)
@@ -77,9 +76,12 @@ The first step is to write handle the login requests. Note that in `login.html`,
 To test this, run the server using `node index.js` and go to `http://localhost:3000/` in your browser. This will open the login page. Enter in user information that exists in your database (i.e. the data you entered with `mongosh` in Step 1). Then it should render the home page.
 
 ### Exercise 3.2
-Now that authentication is working, we need to make our feed! To do this, we will need to make sure we can get data from our backend and display it on the frontend. Our first step, is to make a welcome message. We want to be able to welcome the specific user that just logged in. To do this, we will make use of `message.js`.
+Now that authentication is working, we can make our home page! All our home page will consist of is a message that welcomes the logged in user. In order to render this, we will need to make sure we can get data from our backend and display it on the frontend. We want to be able to welcome the specific user that just logged in so we will have to fetch their name using javascript (I created a `message.js` for this code to live inside).
 1. Modify the `/user` route in the backend (`index.js`) to send the logged in user's name
 2. Inside `message.js`, use the `fetch` function to get the username from the `/user` route
 3. Use this username to update the textContent of the welcome message
 
-*Hint:* `fetch` returns a Promise so make sure you handle that correctly! 
+*Hint:* `fetch` returns a Promise so make sure you conume it correctly! 
+
+## Celebrate
+Congrats! Now you have established a basic working backend! We will expand on this later once we've learned React to build a more complex website
