@@ -30,6 +30,7 @@ connect();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(session(sess));
+app.use(express.static(__dirname));
 
 // Server's base route
 app.get('/', (req, res) => {
@@ -55,6 +56,11 @@ app.post('/login', async (req, res) => {
     console.log('No such user!');
     res.sendStatus(404);
   }
+});
+
+// Exc. 3.2: Render the username
+app.get('/user', (req, res) => {
+  res.json(req.session.user);
 });
 
 // Runs the server
