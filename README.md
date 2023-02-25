@@ -83,7 +83,7 @@ Now that authentication is working, we can make our home page! All our home page
 2. Inside `message.js`, use the `fetch` function to get the username from the `/user` route
 3. Use this username to update the textContent of the welcome message
 
-*Hint:* `fetch` returns a Promise so make sure you conume it correctly! 
+*Hint:* `fetch` returns a Promise so make sure you consume it correctly! 
 
 ## Celebrate
-Congrats! Now you have established a basic working backend! Note that you will (hopefully) never make an authentication server again as there are much more escure pre-built solutions out there such as Firebase. However, this is a good starting point for us and we will expand on this backend later once we've learned React as we will then be able to build a more complex website.
+Congrats! Now you have established a basic working backend! Note that you will (hopefully) never make an authentication server again as there are much more secure pre-built solutions out there such as Firebase. However, this is a good starting point for us and we will expand on this backend later once we've learned React as we will then be able to build a more complex website.
